@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
+import minimist from "minimist";
 import dayjs from "dayjs";
+
+const args = minimist(process.argv.slice(2));
 
 const today = dayjs();
 const [month, aday, year] = [today.month() + 1, today.date(), today.year()];
