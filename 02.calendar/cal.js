@@ -3,13 +3,14 @@
 import minimist from "minimist";
 import dayjs from "dayjs";
 
-const args = minimist(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2));
 
 const today = dayjs();
-const [month, aday, year] = [today.month() + 1, today.date(), today.year()];
+const year = argv.y || today.year();
+const month = argv.m || today.month() + 1;
 
-const firstDay = dayjs().startOf("month");
-const lastDay = dayjs().endOf("month");
+const firstDay = dayjs(`"${year}-${month}"`).startOf("month");
+const lastDay = dayjs(`"${year}-${month}"`).endOf("month");
 
 const startOfWeek = firstDay.day();
 
