@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
-const today = new Date();
-const [month, day, year] = [
-  today.getMonth() + 1,
-  today.getDate(),
-  today.getFullYear(),
-];
+import dayjs from "dayjs";
 
-const firstDay = new Date(year, month, 1);
-const lastDay = new Date(year, month, 0);
+const today = dayjs();
+const [month, aday, year] = [today.month() + 1, today.date(), today.year()];
+
+const firstDay = dayjs().startOf("month");
+const lastDay = dayjs().endOf("month");
 
 console.log(" ".repeat(6) + `${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
-for (let f = firstDay.getDate(); f <= lastDay.getDate(); f++) {
-  console.log(f);
+
+for (let f = firstDay.date(); f <= lastDay.date(); f++) {
+  process.stdout.write(`${f}`);
 }
