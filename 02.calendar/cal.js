@@ -29,3 +29,5 @@ for (let f = firstDay.date(); f <= lastDay.date(); f++) {
     console.log();
   }
 }
+
+console.log();
