@@ -12,12 +12,10 @@ const month = argv.m ?? today.month() + 1;
 const firstDay = dayjs(`"${year}-${month}"`).startOf("month");
 const lastDay = dayjs(`"${year}-${month}"`).endOf("month");
 
-const startOfWeek = firstDay.day();
-
 console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
-process.stdout.write(" ".repeat(startOfWeek * 3)); // 1日分のスペースとして3つの半角空白が必要
+process.stdout.write(" ".repeat(firstDay.day() * 3)); // 1日分のスペースとして3つの半角空白が必要
 
 for (let day = firstDay.date(); day <= lastDay.date(); day++) {
   if (day < 10) {
@@ -25,7 +23,7 @@ for (let day = firstDay.date(); day <= lastDay.date(); day++) {
   } else {
     process.stdout.write(`${day} `);
   }
-  if ((startOfWeek + day) % 7 === 0) {
+  if ((firstDay.day() + day) % 7 === 0) {
     console.log();
   }
 }
