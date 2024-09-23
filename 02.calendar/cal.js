@@ -24,9 +24,15 @@ for (
 ) {
   const isSaturday = (firstDay.day() + dayOfMonth) % 7 === 0;
   if (dayOfMonth < 10) {
-    process.stdout.write(isSaturday ? ` ${dayOfMonth}\n` : ` ${dayOfMonth} `);
+    process.stdout.write(` ${dayOfMonth} `);
   } else {
-    process.stdout.write(isSaturday ? `${dayOfMonth}\n` : `${dayOfMonth} `);
+    process.stdout.write(`${dayOfMonth} `);
+  }
+
+  if (isSaturday) {
+    process.stdout.write("\n");
+  } else {
+    process.stdout.write("");
   }
 }
 
