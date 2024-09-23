@@ -17,7 +17,7 @@ const startOfWeek = firstDay.day();
 console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
-process.stdout.write(" ".repeat(startOfWeek * 3)); //全角 + 半角で3スペース必要
+process.stdout.write(" ".repeat(startOfWeek * 3)); // 1日分のスペースとして3つの半角空白が必要
 
 for (let f = firstDay.date(); f <= lastDay.date(); f++) {
   if (f < 10) {
