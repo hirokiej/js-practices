@@ -19,15 +19,13 @@ console.log("日 月 火 水 木 金 土");
 
 process.stdout.write(" ".repeat(startOfWeek * 3)); // 1日分のスペースとして3つの半角空白が必要
 
-for (let f = firstDay.date(); f <= lastDay.date(); f++) {
-  if (f < 10) {
-    process.stdout.write(` ${f} `);
+for (let day = firstDay.date(); day <= lastDay.date(); day++) {
+  if (day < 10) {
+    process.stdout.write(` ${day} `);
   } else {
-    process.stdout.write(`${f} `);
+    process.stdout.write(`${day} `);
   }
-  if ((startOfWeek + f) % 7 === 0) {
+  if ((startOfWeek + day) % 7 === 0) {
     console.log();
   }
 }
-
-console.log();
