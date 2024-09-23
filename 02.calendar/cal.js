@@ -6,8 +6,8 @@ import dayjs from "dayjs";
 const argv = minimist(process.argv.slice(2));
 
 const today = dayjs();
-const year = argv.y || today.year();
-const month = argv.m || today.month() + 1;
+const year = argv.y ?? today.year();
+const month = argv.m ?? today.month() + 1;
 
 const firstDay = dayjs(`"${year}-${month}"`).startOf("month");
 const lastDay = dayjs(`"${year}-${month}"`).endOf("month");
