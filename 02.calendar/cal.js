@@ -12,7 +12,7 @@ const month = argv.m ?? today.month() + 1;
 const firstDay = dayjs(`"${year}-${month}"`).startOf("month");
 const lastDay = dayjs(`"${year}-${month}"`).endOf("month");
 
-console.log(`      ${month}月 ${year}`);
+console.log(`${" ".repeat(6)}${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
 process.stdout.write(" ".repeat(firstDay.day() * 3)); // 1日分のスペースとして3つの半角空白が必要
