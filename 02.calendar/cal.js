@@ -23,16 +23,20 @@ for (
   dayOfMonth++
 ) {
   const isSaturday = (firstDay.day() + dayOfMonth) % 7 === 0;
+  const isLastDay = dayOfMonth === lastDay;
+
   if (dayOfMonth < 10) {
-    process.stdout.write(` ${dayOfMonth} `);
+    process.stdout.write(` ${dayOfMonth}`);
   } else {
-    process.stdout.write(`${dayOfMonth} `);
+    process.stdout.write(`${dayOfMonth}`);
+  }
+
+  if (!isLastDay) {
+    process.stdout.write(" ");
   }
 
   if (isSaturday) {
     process.stdout.write("\n");
-  } else {
-    process.stdout.write("");
   }
 }
 
