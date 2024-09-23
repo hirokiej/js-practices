@@ -25,3 +25,5 @@ for (let day = firstDay.date(); day <= lastDay.date(); day++) {
     process.stdout.write(isSaturday ? `${day}\n` : `${day} `);
   }
 }
+
+console.log();
