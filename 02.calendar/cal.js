@@ -14,7 +14,7 @@ const lastDay = dayjs(`"${year}-${month}"`).endOf("month");
 
 const startOfWeek = firstDay.day();
 
-console.log(" ".repeat(6) + `${month}月 ${year}`);
+console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
 process.stdout.write(" ".repeat(startOfWeek * 3)); //全角 + 半角で3スペース必要
