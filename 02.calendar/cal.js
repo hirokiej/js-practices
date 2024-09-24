@@ -31,7 +31,7 @@ for (
     process.stdout.write(`${dayOfMonth}`);
   }
 
-  if (!isLastDay) {
+  if (!isLastDay && !isSaturday) {
     process.stdout.write(" ");
   }
 
