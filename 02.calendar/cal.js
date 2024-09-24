@@ -35,7 +35,7 @@ for (
     process.stdout.write(" ");
   }
 
-  if (isSaturday) {
+  if (isSaturday && !isLastDay) {
     process.stdout.write("\n");
   }
 }
