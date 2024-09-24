@@ -18,17 +18,17 @@ console.log("日 月 火 水 木 金 土");
 process.stdout.write(" ".repeat(firstDay.day() * 3)); // 1日分のスペースとして3つの半角空白が必要
 
 for (
-  let dayOfMonth = firstDay.date();
-  dayOfMonth <= lastDay.date();
-  dayOfMonth++
+  let dayOfMonth = firstDay;
+  dayOfMonth <= lastDay;
+  dayOfMonth = dayOfMonth.add(1, "day")
 ) {
-  const isSaturday = (firstDay.day() + dayOfMonth) % 7 === 0;
-  const isLastDay = dayOfMonth === lastDay.date();
+  const isSaturday = (firstDay.day() + dayOfMonth.date()) % 7 === 0;
+  const isLastDay = dayOfMonth.date() === lastDay.date();
 
-  if (dayOfMonth < 10) {
-    process.stdout.write(` ${dayOfMonth}`);
+  if (dayOfMonth.date() < 10) {
+    process.stdout.write(` ${dayOfMonth.date()}`);
   } else {
-    process.stdout.write(`${dayOfMonth}`);
+    process.stdout.write(`${dayOfMonth.date()}`);
   }
 
   if (!isLastDay && !isSaturday) {
