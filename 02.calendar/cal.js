@@ -22,7 +22,7 @@ for (
   monthDay <= lastDay;
   monthDay = monthDay.add(1, "day")
 ) {
-  const isSaturday = (firstDay.day() + monthDay.date()) % 7 === 0;
+  const isSaturday = monthDay.day() === 6;
   const isLastDay = monthDay.date() === lastDay.date();
 
   if (monthDay.date() < 10) {
