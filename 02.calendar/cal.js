@@ -23,7 +23,7 @@ for (
   monthDay = monthDay.add(1, "day")
 ) {
   const isSaturday = monthDay.day() === 6;
-  const isLastDay = monthDay.date() === lastDay.date();
+  const isLastDay = monthDay.isSame(lastDay, "day");
 
   if (monthDay.date() < 10) {
     process.stdout.write(` ${monthDay.date()}`);
