@@ -31,13 +31,9 @@ for (
     process.stdout.write(`${monthDay.date()}`);
   }
 
-  if (!isLastDay) {
-    if (!isSaturday) {
-      process.stdout.write(" ");
-    } else {
-      process.stdout.write("\n");
-    }
-  } else {
+  if (isLastDay || isSaturday) {
     console.log();
+  } else {
+    process.stdout.write(" ");
   }
 }
