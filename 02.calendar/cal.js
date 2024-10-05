@@ -31,7 +31,7 @@ for (
 
   process.stdout.write(monthDay.date().toString());
 
-  if (isLastDay || isSaturday) {
+  if (isSaturday || isLastDay) {
     console.log();
   } else {
     process.stdout.write(" ");
