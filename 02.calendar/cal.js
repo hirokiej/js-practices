@@ -22,11 +22,8 @@ for (
   monthDay <= lastDay;
   monthDay = monthDay.add(1, "day")
 ) {
-  if (monthDay.date() < 10) {
-    process.stdout.write(" ");
-  }
-
-  process.stdout.write(monthDay.date().toString());
+  const dayOfMonth = monthDay.date().toString();
+  process.stdout.write(monthDay.date() < 10 ? ` ${dayOfMonth}` : dayOfMonth);
 
   const isSaturday = monthDay.day() === 6;
   const isLastDay = monthDay.isSame(lastDay, "day");
