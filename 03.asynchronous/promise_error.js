@@ -19,8 +19,8 @@ db.run(
         }
       });
     })
-      .catch((err) => {
-        return new Promise((resolve, reject) => {
+      .catch(() => {
+        return new Promise((resolve) => {
           db.each("SELECT * FROM members", (err, row) => {
             if (err) {
               console.log("データ取得エラー");
