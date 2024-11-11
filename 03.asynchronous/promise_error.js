@@ -11,7 +11,7 @@ db.run(
     new Promise((resolve, reject) => {
       db.run("INSERT INTO books(title) VALUES(?)", null, (err) => {
         if (err) {
-          console.log("データ追加エラー");
+          console.error("データ追加エラー");
           reject(err);
         } else {
           console.log("本を追加しました。");
@@ -23,7 +23,7 @@ db.run(
         return new Promise((resolve) => {
           db.each("SELECT * FROM members", (err, row) => {
             if (err) {
-              console.log("データ取得エラー");
+              console.error("データ取得エラー");
               resolve();
             } else {
               console.log(`id:${row.id}は${row.title}`);
