@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import sqlite3 from "sqlite3";
-
+import { dbClose } from "./promise_function.js";
 const db = new sqlite3.Database(":memory:");
 
 db.run(
@@ -41,10 +41,7 @@ db.run(
         });
       })
       .then(() => {
-        return new Promise((resolve) => {
-          db.close();
-          resolve();
-        });
+        dbClose();
       });
   },
 );
