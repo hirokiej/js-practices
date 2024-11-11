@@ -27,9 +27,7 @@ db.run(
           }
           console.log("Booksテーブルを削除しました");
 
-          db.close(() => {
-            console.log("終了");
-          });
+          db.close();
         });
       });
     });
