@@ -61,12 +61,12 @@ const main = async () => {
     await createTable();
     await insertBook(null);
   } catch (err) {
-    console.error("データ追加エラー");
+    console.error("データ追加エラー", err.message);
   }
   try {
     await outputBook();
   } catch (err) {
-    console.error("データ取得エラー");
+    console.error("データ取得エラー", err.message);
   }
   await dropTable();
   await closeDatabase();
