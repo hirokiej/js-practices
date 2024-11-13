@@ -14,6 +14,18 @@ export const dbRun = (query, params) => {
   });
 };
 
+export const dbEach = (query, params) => {
+  return new Promise((resolve, reject) => {
+    db.each(query, params, (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
+    });
+  });
+};
+
 export const dbClose = () => {
   new Promise((resolve) => {
     db.close();
