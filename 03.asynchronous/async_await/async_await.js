@@ -20,7 +20,7 @@ const insertBook = (title) => {
 };
 
 const outputBook = () => {
-  return dbEach("SELECT * FROM BOOKS").then((row) => {
+  return dbEach("SELECT * FROM books").then((row) => {
     console.log(`id:${row.id}は${row.title}`);
   });
 };
