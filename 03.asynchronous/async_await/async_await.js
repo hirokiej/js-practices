@@ -1,53 +1,38 @@
 #!/usr/bin/env node
 
 import sqlite3 from "sqlite3";
+import { dbRun, dbEach, dbClose } from "../function.js";
 
 const db = new sqlite3.Database(":memory:");
 
 const createTable = () => {
-  return new Promise((resolve) => {
-    db.run(
-      "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL)",
-      () => {
-        console.log("Booksテーブルを作成しました");
-        resolve();
-      },
-    );
+  return dbRun(
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL)",
+  ).then(() => {
+    console.log("Booksテーブルを作成しました");
   });
 };
 
 const insertBook = (title) => {
-  return new Promise((resolve) => {
-    db.run("INSERT INTO books(title) VALUES(?)", title, () => {
-      console.log("本を追加しました");
-      resolve();
-    });
+  return dbRun("INSERT INTO books(title) VALUES(?)", title).then(() => {
+    console.log("本を追加しました。");
   });
 };
 
 const outputBook = () => {
-  return new Promise((resolve) => {
-    db.each("SELECT * FROM BOOKS", (_, row) => {
-      console.log(`id:${row.id}は${row.title}`);
-      resolve();
-    });
+  return dbEach("SELECT * FROM BOOKS").then((row) => {
+    console.log(`id:${row.id}は${row.title}`);
   });
 };
 
 const dropTable = () => {
-  return new Promise((resolve) => {
-    db.run("DROP TABLE books", () => {
-      console.log("Booksテーブルを削除しました");
-      resolve();
-    });
+  return dbRun("DROP TABLE books").then(() => {
+    console.log("Booksテーブルを削除しました");
   });
 };
 
 const closeDatabase = () => {
-  return new Promise((resolve) => {
-    db.close();
-    resolve();
-  });
+  dbClose();
 };
 
 const main = async () => {
