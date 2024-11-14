@@ -1,47 +1,34 @@
 #!/usr/bin/env node
 
 import sqlite3 from "sqlite3";
-import { dbClose } from "./promise_function.js";
+import { dbRun, dbEach, dbClose } from "./promise_function.js";
+
 const db = new sqlite3.Database(":memory:");
 
-db.run(
+dbRun(
   "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL)",
-  () => {
+)
+  .then(() => {
     console.log("Booksテーブルを作成しました");
-    new Promise((resolve, reject) => {
-      db.run("INSERT INTO books(title) VALUES(?)", null, (err) => {
-        if (err) {
-          console.error("データ追加エラー");
-          reject(err);
-        } else {
-          console.log("本を追加しました。");
-          resolve();
-        }
-      });
-    })
-      .catch(() => {
-        return new Promise((resolve) => {
-          db.each("SELECT * FROM members", (err, row) => {
-            if (err) {
-              console.error("データ取得エラー");
-              resolve();
-            } else {
-              console.log(`id:${row.id}は${row.title}`);
-              resolve();
-            }
-          });
-        });
-      })
-      .then(() => {
-        return new Promise((resolve) => {
-          db.run("DROP TABLE books", () => {
-            console.log("Booksテーブルを削除しました");
-            resolve();
-          });
-        });
-      })
-      .then(() => {
-        dbClose();
-      });
-  },
-);
+    return dbRun("INSERT INTO books(title) VALUES(?)", null);
+  })
+  .then(() => {
+    console.log("本を追加しました。");
+    return dbEach("SELECT * FROM books");
+  })
+  .catch(() => {
+    console.error("データ追加エラー");
+    return dbEach("SELECT * FROM members");
+  })
+  .then((row) => {
+    console.log(`id:${row.id}は${row.title}`);
+    return dbRun("DROP TABLE books");
+  })
+  .catch(() => {
+    console.error("データ取得エラー");
+    return dbRun("DROP TABLE books");
+  })
+  .then(() => {
+    console.log("テーブルを削除しました");
+    return dbClose();
+  });
