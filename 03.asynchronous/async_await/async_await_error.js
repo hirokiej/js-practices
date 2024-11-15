@@ -34,11 +34,8 @@ const outputBook = () => {
 };
 
 const dropTable = () => {
-  return new Promise((resolve) => {
-    db.run("DROP TABLE books", () => {
-      console.log("Booksテーブルを削除しました");
-      resolve();
-    });
+  dbRun("DROP TABLE books").then(() => {
+    console.log("Booksテーブルを削除しました");
   });
 };
 
