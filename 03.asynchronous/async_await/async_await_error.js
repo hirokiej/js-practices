@@ -24,15 +24,13 @@ const insertBook = (title) => {
 };
 
 const outputBook = () => {
-  return new Promise((resolve, reject) => {
-    db.each("SELECT * FROM members", (err, row) => {
-      if (err) {
-        return reject(err);
-      }
+  dbEach("SELECT * FROM members")
+    .then(() => {
       console.log(`id:${row.id}は${row.title}`);
-      resolve();
+    })
+    .catch(() => {
+      console.error("データ取得エラー");
     });
-  });
 };
 
 const dropTable = () => {
@@ -54,11 +52,7 @@ const closeDatabase = () => {
 const main = async () => {
   await createTable();
   await insertBook(null);
-  try {
-    await outputBook();
-  } catch (err) {
-    console.error("データ取得エラー", err.message);
-  }
+  await outputBook();
   await dropTable();
   await closeDatabase();
 };
