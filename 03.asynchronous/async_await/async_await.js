@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-import sqlite3 from "sqlite3";
 import { dbRun, dbEach, dbClose } from "../function.js";
-
-const db = new sqlite3.Database(":memory:");
 
 const createTable = () => {
   return dbRun(
