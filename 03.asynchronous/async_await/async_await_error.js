@@ -17,7 +17,7 @@ const insertBook = (title) => {
 };
 
 const outputBook = () => {
-  return dbEach("SELECT * FROM members").then(() => {
+  return dbEach("SELECT * FROM members").then((row) => {
     console.log(`id:${row.id}は${row.title}`);
   });
 };
