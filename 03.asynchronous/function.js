@@ -27,7 +27,7 @@ export const dbEach = (query, params) => {
 };
 
 export const dbClose = () => {
-  new Promise((resolve) => {
+  return new Promise((resolve) => {
     db.close();
     resolve();
   });
