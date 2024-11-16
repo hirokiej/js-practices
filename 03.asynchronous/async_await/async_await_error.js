@@ -32,9 +32,7 @@ const dropTable = () => {
 };
 
 const closeDatabase = () => {
-  dbClose().then(() => {
-    console.log("s");
-  });
+  dbClose();
 };
 
 const main = async () => {
