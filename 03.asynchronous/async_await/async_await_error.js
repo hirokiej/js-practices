@@ -14,42 +14,41 @@ const createTable = () => {
 };
 
 const insertBook = (title) => {
-  return dbRun("INSERT INTO books(title) VALUES(?)", title)
-    .then(() => {
-      console.log("本を追加しました。");
-    })
-    .catch(() => {
-      console.error("データ追加エラー");
-    });
+  return dbRun("INSERT INTO books(title) VALUES(?)", title).then(() => {
+    console.log("本を追加しました。");
+  });
 };
 
 const outputBook = () => {
-  dbEach("SELECT * FROM members")
-    .then(() => {
-      console.log(`id:${row.id}は${row.title}`);
-    })
-    .catch(() => {
-      console.error("データ取得エラー");
-    });
+  return dbEach("SELECT * FROM members").then(() => {
+    console.log(`id:${row.id}は${row.title}`);
+  });
 };
 
 const dropTable = () => {
-  dbRun("DROP TABLE books").then(() => {
+  return dbRun("DROP TABLE books").then(() => {
     console.log("Booksテーブルを削除しました");
   });
 };
 
 const closeDatabase = () => {
-  return new Promise((resolve) => {
-    db.close();
-    resolve();
+  dbClose().then(() => {
+    console.log("s");
   });
 };
 
 const main = async () => {
-  await createTable();
-  await insertBook(null);
-  await outputBook();
+  try {
+    await createTable();
+    await insertBook(null);
+  } catch {
+    console.error("データ追加エラー");
+  }
+  try {
+    await outputBook();
+  } catch {
+    console.error("データ取得エラー");
+  }
   await dropTable();
   await closeDatabase();
 };
