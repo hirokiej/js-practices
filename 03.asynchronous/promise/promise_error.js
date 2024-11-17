@@ -3,7 +3,7 @@
 import { dbRun, dbEach, dbClose } from "../function.js";
 
 dbRun(
-  "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL)",
+  "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)",
 )
   .then(() => {
     console.log("Booksテーブルを作成しました");
