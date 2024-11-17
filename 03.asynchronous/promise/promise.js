@@ -7,7 +7,7 @@ dbRun(
 )
   .then(() => {
     console.log("Booksテーブルを作成しました");
-    dbRun("INSERT INTO books(title) VALUES(?)", "javascriptの本");
+    dbRun("INSERT INTO books(title) VALUES(?)", "JavaScriptの本");
   })
   .then(() => {
     console.log("本を追加しました。");

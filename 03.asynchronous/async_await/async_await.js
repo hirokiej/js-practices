@@ -34,7 +34,7 @@ const closeDatabase = () => {
 
 const main = async () => {
   await createTable();
-  await insertBook("javascriptの本");
+  await insertBook("JavaScriptの本");
   await outputBook();
   await dropTable();
   await closeDatabase();

@@ -8,7 +8,7 @@ db.run(
   "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL)",
   () => {
     console.log("Booksテーブルを作成しました");
-    db.run("INSERT INTO books(title) VALUES(?)", "javascriptの本", () => {
+    db.run("INSERT INTO books(title) VALUES(?)", "JavaScriptの本", () => {
       console.log("本を追加しました。");
       db.each("SELECT * FROM books", (_, row) => {
         console.log(`id:${row.id}は${row.title}`);
