@@ -10,14 +10,14 @@ db.run(
     console.log("Booksテーブルを作成しました");
     db.run("INSERT INTO books(title) VALUES(?)", null, function (err) {
       if (err) {
-        console.error("データ追加エラー");
+        console.error("データ追加エラー", err.message);
       } else {
         console.log("本を追加しました。");
         console.log(`id:${this.lastID}を追加しました`);
       }
       db.each("SELECT * FROM members", (err, row) => {
         if (err) {
-          console.error("データ取得エラー");
+          console.error("データ取得エラー", err.message);
         } else {
           console.log(`id:${row.id}は${row.title}`);
         }
