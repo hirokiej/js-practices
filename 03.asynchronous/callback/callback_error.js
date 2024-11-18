@@ -8,11 +8,12 @@ db.run(
   "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)",
   () => {
     console.log("Booksテーブルを作成しました");
-    db.run("INSERT INTO books(title) VALUES(?)", null, (err) => {
+    db.run("INSERT INTO books(title) VALUES(?)", null, function (err) {
       if (err) {
         console.error("データ追加エラー");
       } else {
         console.log("本を追加しました。");
+        console.log(`id:${this.lastID}を追加しました`);
       }
       db.each("SELECT * FROM members", (err, row) => {
         if (err) {
