@@ -15,16 +15,16 @@ dbRun(
     console.log(`id:${result.lastID}を追加しました`);
     return dbEach(db, "SELECT * FROM books");
   })
-  .catch(() => {
-    console.error("データ追加エラー");
+  .catch((err) => {
+    console.error("データ追加エラー", err.message);
     return dbEach(db, "SELECT * FROM members");
   })
   .then((row) => {
     console.log(`id:${row.id}は${row.title}`);
     return dbRun(db, "DROP TABLE books");
   })
-  .catch(() => {
-    console.error("データ取得エラー");
+  .catch((err) => {
+    console.error("データ取得エラー", err.message);
     return dbRun(db, "DROP TABLE books");
   })
   .then(() => {
