@@ -4,11 +4,11 @@ export const db = new sqlite3.Database(":memory:");
 
 export const dbRun = (db, query, params) => {
   return new Promise((resolve, reject) => {
-    db.run(query, params, (err) => {
+    db.run(query, params, function (err) {
       if (err) {
         reject(err);
       } else {
-        resolve();
+        resolve(this);
       }
     });
   });

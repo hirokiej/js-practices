@@ -10,8 +10,9 @@ dbRun(
     console.log("Booksテーブルを作成しました");
     return dbRun(db, "INSERT INTO books(title) VALUES(?)", "JavaScriptの本");
   })
-  .then(() => {
+  .then((result) => {
     console.log("本を追加しました。");
+    console.log(`id:${result.lastID}を追加しました`);
     return dbEach(db, "SELECT * FROM books");
   })
   .then((row) => {
