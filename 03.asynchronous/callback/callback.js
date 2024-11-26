@@ -11,8 +11,10 @@ db.run(
     db.run("INSERT INTO books(title) VALUES(?)", "JavaScriptの本", function () {
       console.log("本を追加しました。");
       console.log(`id:${this.lastID}を追加しました`);
-      db.each("SELECT * FROM books", (_, row) => {
-        console.log(`id:${row.id}は${row.title}`);
+      db.all("SELECT * FROM books", (_, rows) => {
+        rows.forEach((row) => {
+          console.log(`id:${row.id}は${row.title}`);
+        });
       });
       db.run("DROP TABLE books", () => {
         console.log("Booksテーブルを削除しました");
