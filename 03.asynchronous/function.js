@@ -14,9 +14,9 @@ export const dbRun = (db, query, params) => {
   });
 };
 
-export const dbEach = (db, query, params) => {
+export const dbAll = (db, query, params) => {
   return new Promise((resolve, reject) => {
-    db.each(query, params, (err, row) => {
+    db.all(query, params, (err, row) => {
       if (err) {
         reject(err);
       } else {
