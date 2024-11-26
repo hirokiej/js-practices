@@ -15,11 +15,13 @@ db.run(
         console.log("本を追加しました。");
         console.log(`id:${this.lastID}を追加しました`);
       }
-      db.each("SELECT * FROM members", (err, row) => {
+      db.all("SELECT * FROM members", (err, rows) => {
         if (err) {
           console.error("データ取得エラー", err.message);
         } else {
-          console.log(`id:${row.id}は${row.title}`);
+          rows.forEach((row) => {
+            console.log(`id:${row.id}は${row.title}`);
+          });
         }
       });
       db.run("DROP TABLE books", () => {
