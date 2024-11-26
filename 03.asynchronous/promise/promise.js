@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { db, dbRun, dbEach, dbClose } from "../function.js";
+import { db, dbRun, dbAll, dbClose } from "../function.js";
 
 dbRun(
   db,
@@ -13,10 +13,12 @@ dbRun(
   .then((result) => {
     console.log("本を追加しました。");
     console.log(`id:${result.lastID}を追加しました`);
-    return dbEach(db, "SELECT * FROM books");
+    return dbAll(db, "SELECT * FROM books");
   })
   .then((row) => {
-    console.log(`id:${row.id}は${row.title}`);
+    row.forEach((row) => {
+      console.log(`id:${row.id}は${row.title}`);
+    });
     return dbRun(db, "DROP TABLE books");
   })
   .then(() => {
