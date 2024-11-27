@@ -22,10 +22,11 @@ dbRun(
   })
   .then((row) => {
     console.log(`id:${row.id}は${row.title}`);
-    return dbRun(db, "DROP TABLE books");
   })
   .catch((err) => {
     console.error("データ取得エラー", err.message);
+  })
+  .then(() => {
     return dbRun(db, "DROP TABLE books");
   })
   .then(() => {
