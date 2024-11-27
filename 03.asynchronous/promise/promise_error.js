@@ -13,10 +13,11 @@ dbRun(
   .then((result) => {
     console.log("本を追加しました。");
     console.log(`id:${result.lastID}を追加しました`);
-    return dbAll(db, "SELECT * FROM books");
   })
   .catch((err) => {
     console.error("データ追加エラー", err.message);
+  })
+  .then(() => {
     return dbAll(db, "SELECT * FROM members");
   })
   .then((row) => {
