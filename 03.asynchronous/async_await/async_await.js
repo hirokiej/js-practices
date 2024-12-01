@@ -20,3 +20,4 @@ rows.forEach((row) => {
 });
 await dbRun(db, "DROP TABLE books");
 await dbClose(db);
+console.log("テーブルを削除しました");
