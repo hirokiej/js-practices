@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { dbRun, dbEach, dbClose } from "../function.js";
+import { db, dbRun, dbAll, dbClose } from "../function.js";
 
 const createTable = () => {
   return dbRun(
+    db,
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)",
   ).then(() => {
     console.log("Booksテーブルを作成しました");
@@ -11,25 +12,25 @@ const createTable = () => {
 };
 
 const insertBook = (title) => {
-  return dbRun("INSERT INTO books(title) VALUES(?)", title).then(() => {
+  return dbRun(db, "INSERT INTO books(title) VALUES(?)", title).then(() => {
     console.log("本を追加しました。");
   });
 };
 
 const outputBook = () => {
-  return dbEach("SELECT * FROM members").then((row) => {
+  return dbAll(db, "SELECT * FROM members").then((row) => {
     console.log(`id:${row.id}は${row.title}`);
   });
 };
 
 const dropTable = () => {
-  return dbRun("DROP TABLE books").then(() => {
+  return dbRun(db, "DROP TABLE books").then(() => {
     console.log("Booksテーブルを削除しました");
   });
 };
 
 const closeDatabase = () => {
-  dbClose();
+  dbClose(db);
 };
 
 const main = async () => {
