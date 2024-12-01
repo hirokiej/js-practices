@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { dbRun, dbEach, dbClose } from "../function.js";
+import { dbRun, dbAll, dbClose } from "../function.js";
 
 const createTable = () => {
   return dbRun(
@@ -17,7 +17,7 @@ const insertBook = (title) => {
 };
 
 const outputBook = () => {
-  return dbEach("SELECT * FROM books").then((row) => {
+  return dbAll("SELECT * FROM books").then((row) => {
     console.log(`id:${row.id}は${row.title}`);
   });
 };
