@@ -10,7 +10,7 @@ console.log("テーブルを作成しました");
 const result = await dbRun(
   db,
   "INSERT INTO books(title) VALUES(?)",
-  "Javascriptの本",
+  "JavaScriptの本",
 );
 console.log("本を追加しました");
 console.log(`idは${result.lastID}です`);
