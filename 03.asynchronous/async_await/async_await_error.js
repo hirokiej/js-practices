@@ -9,14 +9,22 @@ const main = async () => {
       "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)",
     );
     console.log("テーブルを作成しました");
-    await dbRun(db, "INSERT INTO books(title) VALUES(?)' null");
-  } catch {
-    console.error("データ追加エラー");
+    await dbRun(db, "INSERT INTO books(title) VALUES(?)", null);
+  } catch (err) {
+    if (err instanceof Error && err.code === "SQLITE_CONSTRAINT") {
+      console.error("データ追加エラー", err.message);
+    } else {
+      throw err;
+    }
   }
   try {
     await dbAll(db, "SELECT * FROM members");
-  } catch {
-    console.error("データ取得エラー");
+  } catch (err) {
+    if (err instanceof Error && err.code == "SQLITE_ERROR") {
+      console.error("データ取得エラー", err.message);
+    } else {
+      throw err;
+    }
   }
   await dbRun(db, "DROP TABLE books");
   await dbClose(db);
