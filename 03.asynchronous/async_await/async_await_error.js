@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { db, dbRun, dbAll, dbClose } from "../function.js";
+import { db, dbRun, dbAll, dbClose } from "../db_functions.js";
 
 try {
   await dbRun(
