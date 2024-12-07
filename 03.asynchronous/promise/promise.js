@@ -15,8 +15,8 @@ dbRun(
     console.log(`id:${result.lastID}を追加しました`);
     return dbAll(db, "SELECT * FROM books");
   })
-  .then((row) => {
-    row.forEach((row) => {
+  .then((rows) => {
+    rows.forEach((row) => {
       console.log(`id:${row.id}は${row.title}`);
     });
     return dbRun(db, "DROP TABLE books");

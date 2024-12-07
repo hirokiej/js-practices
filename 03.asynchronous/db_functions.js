@@ -16,11 +16,11 @@ export const dbRun = (db, query, params) => {
 
 export const dbAll = (db, query, params) => {
   return new Promise((resolve, reject) => {
-    db.all(query, params, (err, row) => {
+    db.all(query, params, (err, rows) => {
       if (err) {
         reject(err);
       } else {
-        resolve(row);
+        resolve(rows);
       }
     });
   });
