@@ -14,21 +14,13 @@ dbRun(
     console.log("本を追加しました。");
     console.log(`id:${result.lastID}を追加しました`);
   })
-  .catch((err) => {
-    console.error("データ追加エラー", err.message);
-  })
-  .then(() => {
-    return dbAll(db, "SELECT * FROM members");
-  })
-  .then((row) => {
-    console.log(`id:${row.id}は${row.title}`);
-  })
+  .catch((err) => console.error("データ追加エラー", err.message))
+  .then(() => dbAll(db, "SELECT * FROM members"))
+  .then((row) => console.log(`id:${row.id}は${row.title}`))
   .catch((err) => {
     console.error("データ取得エラー", err.message);
   })
-  .then(() => {
-    return dbRun(db, "DROP TABLE books");
-  })
+  .then(() => dbRun(db, "DROP TABLE books"))
   .then(() => {
     console.log("Booksテーブルを削除しました");
     return dbClose(db);
