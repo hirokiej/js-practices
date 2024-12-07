@@ -30,6 +30,6 @@ dbRun(
     return dbRun(db, "DROP TABLE books");
   })
   .then(() => {
-    console.log("テーブルを削除しました");
+    console.log("Booksテーブルを削除しました");
     return dbClose(db);
   });
