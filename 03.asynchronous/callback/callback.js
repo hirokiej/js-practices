@@ -15,10 +15,10 @@ db.run(
         rows.forEach((row) => {
           console.log(`id:${row.id}は${row.title}`);
         });
-      });
-      db.run("DROP TABLE books", () => {
-        console.log("Booksテーブルを削除しました");
-        db.close();
+        db.run("DROP TABLE books", () => {
+          console.log("Booksテーブルを削除しました");
+          db.close();
+        });
       });
     });
   },
