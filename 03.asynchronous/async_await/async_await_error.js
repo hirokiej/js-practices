@@ -26,5 +26,5 @@ try {
   }
 }
 await dbRun(db, "DROP TABLE books");
-await dbClose(db);
 console.log("Booksテーブルを削除しました");
+await dbClose(db);

@@ -19,5 +19,5 @@ rows.forEach((row) => {
   console.log(`id:${row.id}は${row.title}`);
 });
 await dbRun(db, "DROP TABLE books");
-await dbClose(db);
 console.log("Booksテーブルを削除しました");
+await dbClose(db);
