@@ -8,7 +8,9 @@ await dbRun(
 );
 console.log("Booksテーブルを作成しました");
 try {
-  await dbRun(db, "INSERT INTO books(title) VALUES(?)", null);
+  const result = await dbRun(db, "INSERT INTO books(title) VALUES(?)", null);
+  console.log("本を追加しました");
+  console.log(`id:${result.lastID}を追加しました`);
 } catch (err) {
   if (err instanceof Error && err.code === "SQLITE_CONSTRAINT") {
     console.error("データ追加エラー", err.message);
