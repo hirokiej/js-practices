@@ -19,7 +19,10 @@ try {
   }
 }
 try {
-  await dbAll(db, "SELECT * FROM members");
+  const rows = await dbAll(db, "SELECT * FROM members");
+  rows.forEach((row) => {
+    console.log(`id:${row.id}は${row.title}`);
+  });
 } catch (err) {
   if (err instanceof Error && err.code == "SQLITE_ERROR") {
     console.error("データ取得エラー", err.message);
