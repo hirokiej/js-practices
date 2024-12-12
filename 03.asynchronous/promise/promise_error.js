@@ -18,7 +18,9 @@ dbRun(
     console.error("データ追加エラー", err.message);
   })
   .then(() => dbAll(db, "SELECT * FROM members"))
-  .then((row) => console.log(`id:${row.id}は${row.title}`))
+  .then((row) => {
+    console.log(`id:${row.id}は${row.title}`);
+  })
   .catch((err) => {
     console.error("データ取得エラー", err.message);
   })
