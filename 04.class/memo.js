@@ -9,20 +9,33 @@ db.run(
 
 const firstArg = process.argv[2];
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-let memo = "";
-rl.on("line", (content) => {
-  memo += content + "\n";
-});
-rl.on("close", () => {
-  db.run("INSERT INTO memo(content) VALUES(?)", [memo], (err) => {
+if (firstArg === "-l") {
+  console.log("一覧だよ");
+  db.all("SELECT * FROM memo", (err, rows) => {
     if (err) {
       console.error(err.message);
     } else {
-      db.close();
+      rows.forEach((row) => {
+        console.log(`${row.content}`);
+      });
     }
   });
-});
+} else {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  let memo = "";
+  rl.on("line", (content) => {
+    memo += content + "\n";
+  });
+  rl.on("close", () => {
+    db.run("INSERT INTO memo(content) VALUES(?)", [memo], (err) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        db.close();
+      }
+    });
+  });
+}
