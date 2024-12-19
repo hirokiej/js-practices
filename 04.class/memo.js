@@ -10,13 +10,12 @@ db.run(
 const firstArg = process.argv[2];
 
 if (firstArg === "-l") {
-  console.log("一覧だよ");
   db.all("SELECT * FROM memo", (err, rows) => {
     if (err) {
       console.error(err.message);
     } else {
       rows.forEach((row) => {
-        console.log(`${row.content}`);
+        console.log(`${row.content.split("\n")[0]}`);
       });
     }
   });
