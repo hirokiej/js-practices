@@ -42,6 +42,28 @@ if (firstArg === "-l") {
       .then((result) => console.log(result))
       .catch(console.error);
   });
+} else if (firstArg === "-d") {
+  db.all("SELECT * FROM memo", (err, rows) => {
+    const memo = rows.map((row) => {
+      const firstLine = row.content.split("\n")[0];
+      return { name: firstLine, value: row.content };
+    });
+    const prompt = new Select({
+      type: "select",
+      name: "name",
+      message: "choose your memo",
+      choices: memo,
+      result() {
+        return this.focused.value;
+      },
+    });
+    prompt
+      .run()
+      .then((result) => {
+        db.run("DELETE FROM memo WHERE content = ?", [result]);
+      })
+      .catch(console.error);
+  });
 } else {
   const rl = readline.createInterface({
     input: process.stdin,
