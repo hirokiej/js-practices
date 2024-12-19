@@ -1,5 +1,8 @@
 import sqlite3 from "sqlite3";
 import readline from "readline";
+import enquirer from "enquirer";
+
+const { Select } = enquirer;
 
 const db = new sqlite3.Database("memo.db");
 
@@ -18,6 +21,26 @@ if (firstArg === "-l") {
         console.log(`${row.content.split("\n")[0]}`);
       });
     }
+  });
+} else if (firstArg === "-r") {
+  db.all("SELECT * FROM memo", (err, rows) => {
+    const memo = rows.map((row) => {
+      const firstLine = row.content.split("\n")[0];
+      return { name: firstLine, value: row.content };
+    });
+    const prompt = new Select({
+      type: "select",
+      name: "name",
+      message: "choose your memo",
+      choices: memo,
+      result() {
+        return this.focused.value;
+      },
+    });
+    prompt
+      .run()
+      .then((result) => console.log(result))
+      .catch(console.error);
   });
 } else {
   const rl = readline.createInterface({
