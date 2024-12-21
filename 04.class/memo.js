@@ -9,14 +9,10 @@ const memoOperation = new MemoOperation();
 const firstArg = process.argv[2];
 
 if (firstArg === "-l") {
-  db.all("SELECT * FROM memo", (err, rows) => {
-    if (err) {
-      console.error(err.message);
-    } else {
-      rows.forEach((row) => {
-        console.log(`${row.content.split("\n")[0]}`);
-      });
-    }
+  memoOperation.listMemo().then((rows) => {
+    rows.forEach((row) => {
+      console.log(`${row.content.split("\n")[0]}`);
+    });
   });
 } else if (firstArg === "-r") {
   db.all("SELECT * FROM memo", (err, rows) => {
