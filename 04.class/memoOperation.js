@@ -20,4 +20,16 @@ export default class MemoOperation {
       });
     });
   }
+
+  listMemo() {
+    return new Promise((resolve, reject) => {
+      db.all("SELECT * FROM memo", (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
 }
