@@ -32,4 +32,16 @@ export default class MemoOperation {
       });
     });
   }
+
+  deleteMemo(content) {
+    return new Promise((resolve, reject) => {
+      db.run("DELETE FROM memo WHERE content = ?", [content], (err, row) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(row);
+        }
+      });
+    });
+  }
 }

@@ -51,8 +51,8 @@ if (firstArg === "-l") {
     });
     prompt
       .run()
-      .then((result) => {
-        db.run("DELETE FROM memo WHERE content = ?", [result]);
+      .then((content) => {
+        memoOperation.deleteMemo(content);
       })
       .catch(console.error);
   });
