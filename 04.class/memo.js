@@ -26,17 +26,5 @@ if (firstArg === "-l") {
     memoOperation.deleteMemo(result);
   });
 } else {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  let memo = "";
-  rl.on("line", (content) => {
-    memo += content + "\n";
-  });
-  rl.on("close", () => {
-    memoOperation.addMemo(memo).then(() => {
-      db.close();
-    });
-  });
+  operateInterface.writeMemoFromInterface();
 }

@@ -1,10 +1,12 @@
 import readline from "readline";
 import enquirer from "enquirer";
-import { db } from "./memoOperation.js";
+import MemoOperation, { db } from "./memoOperation.js";
 const { Select } = enquirer;
 
 export default class OperateInterface {
-  constructor() {}
+  constructor() {
+    this.memoOperation = new MemoOperation();
+  }
   selectMemoFromList(result) {
     db.all("SELECT * FROM memo", (err, rows) => {
       const memo = rows.map((row) => {
@@ -22,6 +24,22 @@ export default class OperateInterface {
         },
       });
       prompt.run().then(result).catch(console.error);
+    });
+  }
+
+  writeMemoFromInterface() {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    let memo = "";
+    rl.on("line", (content) => {
+      memo += content + "\n";
+    });
+    rl.on("close", () => {
+      this.memoOperation.addMemo(memo).then(() => {
+        db.close();
+      });
     });
   }
 }
