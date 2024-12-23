@@ -1,10 +1,5 @@
-import readline from "readline";
-import enquirer from "enquirer";
-
 import MemoOperation, { db } from "./memoOperation.js";
 import OperateInterface from "./operateInterface.js";
-
-const { Select } = enquirer;
 
 const memoOperation = new MemoOperation();
 const operateInterface = new OperateInterface();
