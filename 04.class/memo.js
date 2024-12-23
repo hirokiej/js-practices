@@ -22,30 +22,8 @@ if (firstArg === "-l") {
     console.log(result);
   });
 } else if (firstArg === "-d") {
-  db.all("SELECT * FROM memo", (err, rows) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    const memo = rows.map((row) => {
-      const firstLine = row.content.split("\n")[0];
-      return { name: firstLine, value: row.content };
-    });
-    const prompt = new Select({
-      type: "select",
-      name: "name",
-      message: "choose your memo",
-      choices: memo,
-      result() {
-        return this.focused.value;
-      },
-    });
-    prompt
-      .run()
-      .then((content) => {
-        memoOperation.deleteMemo(content);
-      })
-      .catch(console.error);
+  operateInterface.selectMemoFromList((result) => {
+    memoOperation.deleteMemo(result);
   });
 } else {
   const rl = readline.createInterface({
