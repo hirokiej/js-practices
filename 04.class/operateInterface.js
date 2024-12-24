@@ -1,6 +1,7 @@
 import readline from "readline";
 import enquirer from "enquirer";
 import MemoOperation, { db } from "./memoOperation.js";
+
 const { Select } = enquirer;
 
 export default class OperateInterface {
@@ -9,10 +10,7 @@ export default class OperateInterface {
   }
   selectMemoFromList(result) {
     this.memoOperation.listMemo().then((rows) => {
-      const memo = rows.map((row) => {
-        const firstLine = row.content.split("\n")[0];
-        return { name: firstLine, value: row.content };
-      });
+      const memo = this.#extractFirstLine(rows);
       this.#promptForMemo(memo).then(result).catch(console.error);
     });
   }
@@ -25,6 +23,12 @@ export default class OperateInterface {
     });
   }
 
+  #extractFirstLine(rows) {
+    return rows.map((row) => {
+      const firstLine = row.content.split("\n")[0];
+      return { name: firstLine, value: row.content };
+    });
+  }
   #promptForMemo(memo) {
     const prompt = new Select({
       type: "select",
