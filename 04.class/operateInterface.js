@@ -28,17 +28,25 @@ export default class OperateInterface {
   }
 
   writeMemoFromInterface() {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-    let memo = "";
-    rl.on("line", (content) => {
-      memo += content + "\n";
-    });
-    rl.on("close", () => {
+    this.#createPrompt().then((memo) => {
       this.memoOperation.addMemo(memo).then(() => {
         db.close();
+      });
+    });
+  }
+
+  #createPrompt() {
+    return new Promise((resolve) => {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+      let memo = "";
+      rl.on("line", (content) => {
+        memo += content + "\n";
+      });
+      rl.on("close", () => {
+        resolve(memo);
       });
     });
   }
