@@ -13,17 +13,7 @@ export default class OperateInterface {
         const firstLine = row.content.split("\n")[0];
         return { name: firstLine, value: row.content };
       });
-
-      const prompt = new Select({
-        type: "select",
-        name: "name",
-        message: "choose your memo",
-        choices: memo,
-        result() {
-          return this.focused.value;
-        },
-      });
-      prompt.run().then(result).catch(console.error);
+      this.#promptForMemo(memo).then(result).catch(console.error);
     });
   }
 
@@ -33,6 +23,19 @@ export default class OperateInterface {
         db.close();
       });
     });
+  }
+
+  #promptForMemo(memo) {
+    const prompt = new Select({
+      type: "select",
+      name: "name",
+      message: "choose your memo",
+      choices: memo,
+      result() {
+        return this.focused.value;
+      },
+    });
+    return prompt.run();
   }
 
   #createMemoPrompt() {
