@@ -28,14 +28,14 @@ export default class OperateInterface {
   }
 
   writeMemoFromInterface() {
-    this.#createPrompt().then((memo) => {
+    this.#createMemoPrompt().then((memo) => {
       this.memoOperation.addMemo(memo).then(() => {
         db.close();
       });
     });
   }
 
-  #createPrompt() {
+  #createMemoPrompt() {
     return new Promise((resolve) => {
       const rl = readline.createInterface({
         input: process.stdin,
