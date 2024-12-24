@@ -8,7 +8,7 @@ export default class OperateInterface {
     this.memoOperation = new MemoOperation();
   }
   selectMemoFromList(result) {
-    db.all("SELECT * FROM memo", (err, rows) => {
+    this.memoOperation.listMemo().then((rows) => {
       const memo = rows.map((row) => {
         const firstLine = row.content.split("\n")[0];
         return { name: firstLine, value: row.content };
