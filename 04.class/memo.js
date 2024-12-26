@@ -11,9 +11,7 @@ if (firstArg === "-l") {
 } else if (firstArg === "-r") {
   operateInterface.readMemos();
 } else if (firstArg === "-d") {
-  operateInterface.selectMemoFromList((result) => {
-    memoOperation.deleteMemo(result);
-  });
+  operateInterface.deleteMemo();
 } else {
   operateInterface.writeMemoFromInterface();
 }
