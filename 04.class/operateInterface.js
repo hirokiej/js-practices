@@ -27,7 +27,7 @@ export default class OperateInterface {
   #selectMemoFromList() {
     return this.memoOperation.fetchMemos().then((rows) => {
       const memo = this.#extractFirstLine(rows);
-      this.#promptForMemo(memo);
+      return this.#promptForMemo(memo);
     });
   }
 
