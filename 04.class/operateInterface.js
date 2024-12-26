@@ -16,10 +16,18 @@ export default class OperateInterface {
     });
   }
 
-  selectMemoFromList(result) {
-    this.memoOperation.fetchMemos().then((rows) => {
+  readMemos() {
+    this.#selectMemoFromList()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch(console.error);
+  }
+
+  #selectMemoFromList() {
+    return this.memoOperation.fetchMemos().then((rows) => {
       const memo = this.#extractFirstLine(rows);
-      this.#promptForMemo(memo).then(result).catch(console.error);
+      this.#promptForMemo(memo);
     });
   }
 
