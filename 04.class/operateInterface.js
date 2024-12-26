@@ -24,6 +24,12 @@ export default class OperateInterface {
       .catch(console.error);
   }
 
+  deleteMemo() {
+    this.#selectMemoFromList().then((result) => {
+      this.memoOperation.removeMemo(result);
+    });
+  }
+
   #selectMemoFromList() {
     return this.memoOperation.fetchMemos().then((rows) => {
       const memo = this.#extractFirstLine(rows);
