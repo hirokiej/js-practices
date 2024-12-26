@@ -3,11 +3,19 @@ import enquirer from "enquirer";
 import MemoOperation, { db } from "./memoOperation.js";
 
 const { Select } = enquirer;
-
 export default class OperateInterface {
-  constructor() {
-    this.memoOperation = new MemoOperation();
+  constructor(memoOperation) {
+    this.memoOperation = memoOperation;
   }
+
+  listMemos() {
+    this.memoOperation.fetchMemos().then((rows) => {
+      rows.forEach((row) => {
+        console.log(`${row.content.split("\n")[0]}`);
+      });
+    });
+  }
+
   selectMemoFromList(result) {
     this.memoOperation.fetchMemos().then((rows) => {
       const memo = this.#extractFirstLine(rows);
