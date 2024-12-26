@@ -7,7 +7,7 @@ const operateInterface = new OperateInterface();
 const firstArg = process.argv[2];
 
 if (firstArg === "-l") {
-  memoOperation.listMemo().then((rows) => {
+  memoOperation.fetchMemos().then((rows) => {
     rows.forEach((row) => {
       console.log(`${row.content.split("\n")[0]}`);
     });

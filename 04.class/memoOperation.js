@@ -21,7 +21,7 @@ export default class MemoOperation {
     });
   }
 
-  listMemo() {
+  fetchMemos() {
     return new Promise((resolve, reject) => {
       db.all("SELECT * FROM memo", (err, rows) => {
         if (err) {

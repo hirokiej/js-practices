@@ -9,7 +9,7 @@ export default class OperateInterface {
     this.memoOperation = new MemoOperation();
   }
   selectMemoFromList(result) {
-    this.memoOperation.listMemo().then((rows) => {
+    this.memoOperation.fetchMemos().then((rows) => {
       const memo = this.#extractFirstLine(rows);
       this.#promptForMemo(memo).then(result).catch(console.error);
     });
