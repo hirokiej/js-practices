@@ -30,18 +30,18 @@ export default class OperateInterface {
     });
   }
 
-  #selectMemoFromList() {
-    return this.memoOperation.fetchMemos().then((rows) => {
-      const memo = this.#extractFirstLine(rows);
-      return this.#promptForMemo(memo);
-    });
-  }
-
   writeMemoFromInterface() {
     this.#createMemoPrompt().then((memo) => {
       this.memoOperation.addMemo(memo).then(() => {
         db.close();
       });
+    });
+  }
+
+  #selectMemoFromList() {
+    return this.memoOperation.fetchMemos().then((rows) => {
+      const memo = this.#extractFirstLine(rows);
+      return this.#promptForMemo(memo);
     });
   }
 
@@ -51,6 +51,7 @@ export default class OperateInterface {
       return { name: firstLine, value: row.content };
     });
   }
+
   #promptForMemo(memo) {
     const prompt = new Select({
       type: "select",
