@@ -8,41 +8,54 @@ export default class OperateInterface {
     this.memoOperation = memoOperation;
   }
 
-  listMemos() {
-    this.memoOperation.fetchMemos().then((rows) => {
+  async listMemos() {
+    try {
+      const rows = await this.memoOperation.fetchMemos();
       rows.forEach((row) => {
         console.log(`${row.content.split("\n")[0]}`);
       });
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  readMemos() {
-    this.#selectMemoFromList()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch(console.error);
+  async readMemos() {
+    try {
+      const result = await this.#selectMemoFromList();
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  deleteMemo() {
-    this.#selectMemoFromList().then((result) => {
+  async deleteMemo() {
+    try {
+      const result = await this.#selectMemoFromList();
       this.memoOperation.removeMemo(result);
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  writeMemoFromInterface() {
-    this.#createMemoPrompt().then((memo) => {
+  async writeMemoFromInterface() {
+    try {
+      const memo = await this.#createMemoPrompt();
       this.memoOperation.addMemo(memo).then(() => {
         db.close();
       });
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  #selectMemoFromList() {
-    return this.memoOperation.fetchMemos().then((rows) => {
+  async #selectMemoFromList() {
+    try {
+      const rows = await this.memoOperation.fetchMemos();
       const memo = this.#extractFirstLine(rows);
       return this.#promptForMemo(memo);
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   #extractFirstLine(rows) {
