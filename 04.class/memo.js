@@ -6,12 +6,20 @@ const operateInterface = new OperateInterface(memoOperation);
 
 const firstArg = process.argv[2];
 
-if (firstArg === "-l") {
-  operateInterface.listMemos();
-} else if (firstArg === "-r") {
-  operateInterface.readMemos();
-} else if (firstArg === "-d") {
-  operateInterface.deleteMemo();
-} else {
-  operateInterface.writeMemoFromInterface();
+async function main() {
+  try {
+    if (firstArg === "-l") {
+      await operateInterface.listMemos();
+    } else if (firstArg === "-r") {
+      await operateInterface.readMemos();
+    } else if (firstArg === "-d") {
+      await operateInterface.deleteMemo();
+    } else {
+      await operateInterface.writeMemoFromInterface();
+    }
+  } catch (err) {
+    console.error(err);
+  }
 }
+
+main();
