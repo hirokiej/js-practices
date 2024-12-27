@@ -40,9 +40,8 @@ export default class OperateInterface {
   async writeMemoFromInterface() {
     try {
       const memo = await this.#createMemoPrompt();
-      this.memoOperation.addMemo(memo).then(() => {
-        db.close();
-      });
+      await this.memoOperation.addMemo(memo);
+      db.close();
     } catch (err) {
       console.error(err);
     }
