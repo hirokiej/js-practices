@@ -1,6 +1,6 @@
 import readline from "readline";
 import enquirer from "enquirer";
-import MemoOperation, { db } from "./memoOperation.js";
+import { db } from "./memoOperation.js";
 
 const { Select } = enquirer;
 export default class OperateInterface {
