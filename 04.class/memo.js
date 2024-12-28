@@ -1,4 +1,4 @@
-import MemoOperation, { db } from "./memoOperation.js";
+import MemoOperation from "./memoOperation.js";
 import OperateInterface from "./operateInterface.js";
 
 const memoOperation = new MemoOperation();
