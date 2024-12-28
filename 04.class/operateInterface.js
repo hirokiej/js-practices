@@ -21,7 +21,7 @@ export default class OperateInterface {
 
   async readMemos() {
     try {
-      const result = await this.#selectMemoFromList();
+      const result = await this.#selectMemoFromList("see");
       console.log(result);
     } catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ export default class OperateInterface {
 
   async deleteMemo() {
     try {
-      const result = await this.#selectMemoFromList();
+      const result = await this.#selectMemoFromList("delete");
       this.memoOperation.removeMemo(result);
     } catch (err) {
       console.error(err);
@@ -47,11 +47,11 @@ export default class OperateInterface {
     }
   }
 
-  async #selectMemoFromList() {
+  async #selectMemoFromList(action) {
     try {
       const rows = await this.memoOperation.fetchMemos();
       const memo = this.#extractFirstLine(rows);
-      return this.#promptForMemo(memo);
+      return this.#promptForMemo(memo, action);
     } catch (err) {
       console.error(err);
     }
@@ -64,11 +64,11 @@ export default class OperateInterface {
     });
   }
 
-  #promptForMemo(memo) {
+  #promptForMemo(memo, action) {
     const prompt = new Select({
       type: "select",
       name: "name",
-      message: "choose your memo",
+      message: `Choose a memo you want to ${action}:`,
       choices: memo,
       result() {
         return this.focused.value;
