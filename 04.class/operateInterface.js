@@ -37,7 +37,7 @@ export default class OperateInterface {
     }
   }
 
-  async writeMemoFromInterface() {
+  async writeMemo() {
     try {
       const memo = await this.#createMemoPrompt();
       await this.memoOperation.addMemo(memo);

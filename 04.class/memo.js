@@ -15,7 +15,7 @@ async function main() {
     } else if (firstArg === "-d") {
       await operateInterface.deleteMemo();
     } else {
-      await operateInterface.writeMemoFromInterface();
+      await operateInterface.writeMemo();
     }
   } catch (err) {
     console.error(err);
