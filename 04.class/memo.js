@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import MemoOperation from "./memoOperation.js";
 import OperateInterface from "./operateInterface.js";
 
