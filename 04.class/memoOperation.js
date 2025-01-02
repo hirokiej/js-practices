@@ -5,7 +5,9 @@ export const db = new sqlite3.Database("memo.db");
 export default class MemoOperation {
   constructor() {
     db.run(
-      "CREATE TABLE IF NOT EXISTS memo(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT)",
+      `CREATE TABLE IF NOT EXISTS memo(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        content TEXT)`,
     );
   }
 
