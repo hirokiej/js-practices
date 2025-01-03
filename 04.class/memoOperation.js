@@ -48,12 +48,14 @@ export default class MemoOperation {
   }
 
   dbClose() {
-    db.close((er) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
+    db.close((err) => {
+      return new Promise((resolve, reject) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
     });
   }
 }
