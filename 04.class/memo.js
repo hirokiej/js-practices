@@ -19,7 +19,9 @@ async function main() {
     } else {
       await operateInterface.writeMemo();
     }
-
+  } finally {
+    memoOperation.dbClose();
+  }
 }
 
 main();
