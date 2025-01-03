@@ -25,7 +25,7 @@ export default class MemoOperation {
 
   fetchMemos() {
     return new Promise((resolve, reject) => {
-      db.all("SELECT * FROM memo", (err, rows) => {
+      db.all("SELECT * FROM memo ORDER BY id", (err, rows) => {
         if (err) {
           reject(err);
         } else {
