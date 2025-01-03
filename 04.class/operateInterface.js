@@ -50,17 +50,21 @@ export default class OperateInterface {
   async #selectMemoFromList(action) {
     try {
       const rows = await this.memoOperation.fetchMemos();
-      const memo = this.#extractFirstLine(rows);
+      const memo = this.#extractFirstLine(rows, action);
       return this.#promptForMemo(memo, action);
     } catch (err) {
       console.error(err);
     }
   }
 
-  #extractFirstLine(rows) {
+  #extractFirstLine(rows, action) {
     return rows.map((row) => {
       const firstLine = row.content.split("\n")[0];
-      return { name: firstLine, value: row.content };
+      if (action === "delete") {
+        return { name: firstLine, value: row.id };
+      } else {
+        return { name: firstLine, value: row.content };
+      }
     });
   }
 

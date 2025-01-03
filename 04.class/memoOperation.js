@@ -35,9 +35,9 @@ export default class MemoOperation {
     });
   }
 
-  removeMemo(content) {
+  removeMemo(id) {
     return new Promise((resolve, reject) => {
-      db.run("DELETE FROM memo WHERE content = ?", [content], (err, row) => {
+      db.run("DELETE FROM memo WHERE id = ?", [id], (err, row) => {
         if (err) {
           reject(err);
         } else {
