@@ -19,9 +19,7 @@ async function main() {
     } else {
       await operateInterface.writeMemo();
     }
-  } catch (err) {
-    console.error(err);
-  }
+
 }
 
 main();
