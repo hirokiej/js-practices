@@ -11,9 +11,9 @@ export default class MemoOperation {
     );
   }
 
-  addMemo(memo) {
+  addMemo(content) {
     return new Promise((resolve, reject) => {
-      db.run("INSERT INTO memo(content) VALUES(?)", [memo], (err) => {
+      db.run("INSERT INTO memo(content) VALUES(?)", [content], (err) => {
         if (err) {
           reject(err);
         } else {
