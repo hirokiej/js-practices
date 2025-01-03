@@ -49,8 +49,8 @@ export default class OperateInterface {
   async #selectMemoFromList(action) {
     try {
       const rows = await this.memoOperation.fetchMemos();
-      const memo = this.#extractFirstLine(rows, action);
-      return this.#promptForMemo(memo, action);
+      const memos = this.#extractFirstLine(rows, action);
+      return this.#promptForMemo(memos, action);
     } catch (err) {
       console.error(err);
     }
