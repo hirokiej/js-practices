@@ -21,7 +21,7 @@ export default class OperateInterface {
 
   async readMemos() {
     try {
-      const result = await this.#selectMemoFromList("see");
+      const result = await this.#selectMemosFromList("see");
       console.log(result);
     } catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ export default class OperateInterface {
 
   async deleteMemo() {
     try {
-      const result = await this.#selectMemoFromList("delete");
+      const result = await this.#selectMemosFromList("delete");
       this.memoOperation.removeMemo(result);
     } catch (err) {
       console.error(err);
@@ -46,7 +46,7 @@ export default class OperateInterface {
     }
   }
 
-  async #selectMemoFromList(action) {
+  async #selectMemosFromList(action) {
     try {
       const rows = await this.memoOperation.fetchMemos();
       const memos = this.#extractFirstLine(rows, action);
