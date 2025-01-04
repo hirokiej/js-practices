@@ -49,14 +49,14 @@ export default class OperateInterface {
   async #selectMemosFromList(action) {
     try {
       const rows = await this.memoOperation.fetchMemos();
-      const memos = this.#extractFirstLine(rows, action);
+      const memos = this.#extractFirstLineAndValue(rows, action);
       return this.#promptForMemo(memos, action);
     } catch (err) {
       console.error(err);
     }
   }
 
-  #extractFirstLine(rows, action) {
+  #extractFirstLineAndValue(rows, action) {
     return rows.map((row) => {
       const firstLine = row.content.split("\n")[0];
       if (action === "delete") {
