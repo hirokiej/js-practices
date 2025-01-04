@@ -58,7 +58,7 @@ export default class OperateInterface {
 
   #extractFirstLineAndValue(rows, action) {
     return rows.map((row) => {
-      const firstLine = row.content.split("\n")[0];
+      const firstLine = row.content.split("\n")[0] || " ";
       if (action === "delete") {
         return { name: firstLine, value: row.id };
       } else {
