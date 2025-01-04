@@ -12,7 +12,7 @@ export default class OperateInterface {
     try {
       const rows = await this.memoOperation.fetchMemos();
       rows.forEach((row) => {
-        console.log(`${row.content.split("\n")[0]}`);
+        console.log(row.content.split("\n")[0]);
       });
     } catch (err) {
       console.error(err);
