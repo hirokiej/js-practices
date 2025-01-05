@@ -3,15 +3,15 @@
 import MemoOperation from "./memoOperation.js";
 import OperateInterface from "./operateInterface.js";
 
-const memoOperation = new MemoOperation();
-const operateInterface = new OperateInterface(memoOperation);
-
-const validOptions = ["-l", "-r", "-d"];
-const firstArg = process.argv[2];
-
 main();
 
 async function main() {
+  const memoOperation = new MemoOperation();
+  const operateInterface = new OperateInterface(memoOperation);
+
+  const validOptions = ["-l", "-r", "-d"];
+  const firstArg = process.argv[2];
+
   try {
     if (!firstArg) {
       await operateInterface.writeMemo();
