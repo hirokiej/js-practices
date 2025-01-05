@@ -13,16 +13,16 @@ async function main() {
   try {
     if (!firstArg) {
       await operateInterface.writeMemo();
-    } else if (!validOptions.includes(firstArg)) {
-      console.error(
-        "Invalid option: Please use -l(list), -r(read) or -d(delete)",
-      );
     } else if (firstArg === "-l") {
       await operateInterface.listMemos();
     } else if (firstArg === "-r") {
       await operateInterface.readMemos();
     } else if (firstArg === "-d") {
       await operateInterface.deleteMemo();
+    } else if (!validOptions.includes(firstArg)) {
+      console.error(
+        "Invalid option: Please use -l(list), -r(read) or -d(delete)",
+      );
     }
   } finally {
     memoOperation.dbClose();
