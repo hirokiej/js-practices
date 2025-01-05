@@ -9,6 +9,8 @@ const operateInterface = new OperateInterface(memoOperation);
 const validOptions = ["-l", "-r", "-d"];
 const firstArg = process.argv[2];
 
+main();
+
 async function main() {
   try {
     if (!firstArg) {
@@ -28,5 +30,3 @@ async function main() {
     memoOperation.dbClose();
   }
 }
-
-main();
