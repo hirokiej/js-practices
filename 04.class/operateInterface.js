@@ -39,12 +39,9 @@ export default class OperateInterface {
   }
 
   async writeMemo() {
-    try {
-      const content = await this.#createMemoPrompt();
-      await this.memoOperation.addMemo(content);
-    } catch (err) {
-      console.error(err);
-    }
+    const content = await this.#createMemoPrompt();
+    await this.memoOperation.addMemo(content);
+    console.log("Memo added");
   }
 
   async #selectMemosFromList(action) {
