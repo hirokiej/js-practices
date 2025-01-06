@@ -20,11 +20,11 @@ export default class OperateInterface {
   }
 
   async readMemos() {
-    try {
-      const result = await this.#selectMemosFromList("see");
+    const result = await this.#selectMemosFromList("see");
+    if (result) {
       console.log(result);
-    } catch (err) {
-      console.error(err);
+    } else {
+      return;
     }
   }
 
@@ -47,13 +47,13 @@ export default class OperateInterface {
   }
 
   async #selectMemosFromList(action) {
-    try {
-      const rows = await this.memoOperation.fetchMemos();
-      const memos = this.#extractFirstLineAndValue(rows, action);
-      return this.#promptForMemo(memos, action);
-    } catch (err) {
-      console.error(err);
+    const rows = await this.memoOperation.fetchMemos();
+    if (rows.length === 0) {
+      console.error("No memos found");
+      return;
     }
+    const memos = this.#extractFirstLineAndValue(rows, action);
+    return this.#promptForMemo(memos, action);
   }
 
   #extractFirstLineAndValue(rows, action) {
