@@ -21,11 +21,8 @@ export default class OperateInterface {
 
   async readMemos() {
     const content = await this.#selectMemoFromList("see");
-    if (content) {
-      console.log(content);
-    } else {
-      return;
-    }
+    if (!content) return;
+    console.log(content);
   }
 
   async deleteMemo() {
