@@ -41,13 +41,13 @@ export default class OperateInterface {
   async writeMemo() {
     const content = await this.#createMemoPrompt();
     await this.memoOperation.addMemo(content);
-    console.log("Memo added");
+    console.log("Memo added.");
   }
 
   async #selectMemosFromList(action) {
     const rows = await this.memoOperation.fetchMemos();
     if (rows.length === 0) {
-      console.error("No memos found");
+      console.error("No memos found.");
       return;
     }
     const choices = this.#extractFirstLineAndValue(rows, action);
