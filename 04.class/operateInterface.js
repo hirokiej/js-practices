@@ -29,11 +29,12 @@ export default class OperateInterface {
   }
 
   async deleteMemo() {
-    try {
-      const result = await this.#selectMemosFromList("delete");
+    const result = await this.#selectMemosFromList("delete");
+    if (result) {
       this.memoOperation.removeMemo(result);
-    } catch (err) {
-      console.error(err);
+      console.log("Memo deleted!");
+    } else {
+      return;
     }
   }
 
