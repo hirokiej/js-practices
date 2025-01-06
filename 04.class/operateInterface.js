@@ -9,13 +9,13 @@ export default class OperateInterface {
   }
 
   async listMemos() {
-    const rows = await this.memoOperation.fetchMemos();
-    if (rows.length === 0) {
+    const memos = await this.memoOperation.fetchMemos();
+    if (memos.length === 0) {
       console.error("No memos found.");
       return;
     }
-    rows.forEach((row) => {
-      console.log(row.content.split("\n")[0]);
+    memos.forEach((memo) => {
+      console.log(memo.content.split("\n")[0]);
     });
   }
 
@@ -45,22 +45,22 @@ export default class OperateInterface {
   }
 
   async #selectMemosFromList(action) {
-    const rows = await this.memoOperation.fetchMemos();
-    if (rows.length === 0) {
+    const memos = await this.memoOperation.fetchMemos();
+    if (memos.length === 0) {
       console.error("No memos found.");
       return;
     }
-    const choices = this.#extractFirstLineAndValue(rows, action);
+    const choices = this.#extractFirstLineAndValue(memos, action);
     return this.#promptForMemo(choices, action);
   }
 
-  #extractFirstLineAndValue(rows, action) {
-    return rows.map((row) => {
-      const firstLine = row.content.split("\n")[0] || " ";
+  #extractFirstLineAndValue(memos, action) {
+    return memos.map((memo) => {
+      const firstLine = memo.content.split("\n")[0] || " ";
       if (action === "delete") {
-        return { name: firstLine, value: row.id };
+        return { name: firstLine, value: memo.id };
       } else {
-        return { name: firstLine, value: row.content };
+        return { name: firstLine, value: memo.content };
       }
     });
   }
