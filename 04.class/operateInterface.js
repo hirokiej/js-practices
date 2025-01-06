@@ -9,14 +9,14 @@ export default class OperateInterface {
   }
 
   async listMemos() {
-    try {
-      const rows = await this.memoOperation.fetchMemos();
-      rows.forEach((row) => {
-        console.log(row.content.split("\n")[0]);
-      });
-    } catch (err) {
-      console.error(err);
+    const rows = await this.memoOperation.fetchMemos();
+    if (rows.length === 0) {
+      console.error("No memos found.");
+      return;
     }
+    rows.forEach((row) => {
+      console.log(row.content.split("\n")[0]);
+    });
   }
 
   async readMemos() {
