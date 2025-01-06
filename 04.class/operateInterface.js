@@ -56,7 +56,7 @@ export default class OperateInterface {
 
   #extractFirstLineAndValue(memos, action) {
     return memos.map((memo) => {
-      const firstLine = memo.content.split("\n")[0] || "";
+      const firstLine = memo.content.split("\n")[0] || " ";
       const prop = action === "delete" ? "id" : "content";
       return { name: firstLine, value: memo[prop] };
     });
