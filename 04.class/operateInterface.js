@@ -29,9 +29,9 @@ export default class OperateInterface {
   }
 
   async deleteMemo() {
-    const result = await this.#selectMemosFromList("delete");
-    if (result) {
-      this.memoOperation.removeMemo(result);
+    const id = await this.#selectMemosFromList("delete");
+    if (id) {
+      this.memoOperation.removeMemo(id);
       console.log("Memo deleted!");
     } else {
       return;
