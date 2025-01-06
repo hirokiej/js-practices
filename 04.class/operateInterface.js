@@ -50,8 +50,8 @@ export default class OperateInterface {
       console.error("No memos found");
       return;
     }
-    const memos = this.#extractFirstLineAndValue(rows, action);
-    return this.#promptForMemo(memos, action);
+    const choices = this.#extractFirstLineAndValue(rows, action);
+    return this.#promptForMemo(choices, action);
   }
 
   #extractFirstLineAndValue(rows, action) {
