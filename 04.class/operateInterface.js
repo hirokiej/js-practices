@@ -20,9 +20,9 @@ export default class OperateInterface {
   }
 
   async readMemos() {
-    const result = await this.#selectMemosFromList("see");
-    if (result) {
-      console.log(result);
+    const content = await this.#selectMemosFromList("see");
+    if (content) {
+      console.log(content);
     } else {
       return;
     }
