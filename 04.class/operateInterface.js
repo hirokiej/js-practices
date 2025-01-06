@@ -75,12 +75,12 @@ export default class OperateInterface {
         input: process.stdin,
         output: process.stdout,
       });
-      let memo = "";
-      rl.on("line", (content) => {
-        memo += content + "\n";
+      let content = "";
+      rl.on("line", (line) => {
+        content += line + "\n";
       });
       rl.on("close", () => {
-        resolve(memo);
+        resolve(content);
       });
     });
   }
