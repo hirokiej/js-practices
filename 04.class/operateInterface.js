@@ -2,6 +2,7 @@ import readline from "readline";
 import enquirer from "enquirer";
 
 const { Select } = enquirer;
+
 export default class OperateInterface {
   constructor(memoOperation) {
     this.memoOperation = memoOperation;
