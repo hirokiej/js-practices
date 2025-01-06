@@ -20,7 +20,7 @@ export default class OperateInterface {
   }
 
   async readMemos() {
-    const content = await this.#selectMemosFromList("see");
+    const content = await this.#selectMemoFromList("see");
     if (content) {
       console.log(content);
     } else {
@@ -29,7 +29,7 @@ export default class OperateInterface {
   }
 
   async deleteMemo() {
-    const id = await this.#selectMemosFromList("delete");
+    const id = await this.#selectMemoFromList("delete");
     if (id) {
       this.memoOperation.removeMemo(id);
       console.log("Memo deleted!");
@@ -44,7 +44,7 @@ export default class OperateInterface {
     console.log("Memo added.");
   }
 
-  async #selectMemosFromList(action) {
+  async #selectMemoFromList(action) {
     const memos = await this.memoOperation.fetchMemos();
     if (memos.length === 0) {
       console.error("No memos found.");
