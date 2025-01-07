@@ -10,7 +10,10 @@ export default class OperateInterface {
 
   async listMemos() {
     const memos = await this.memoOperation.fetchMemos();
-    if (this.#isMemoEmpty(memos)) return;
+    if (memos.length === 0) {
+      console.error("No memos found.");
+      return true;
+    }
     memos.forEach((memo) => {
       console.log(memo.content.split("\n")[0]);
     });
@@ -37,16 +40,12 @@ export default class OperateInterface {
 
   async #selectMemoFromList(action) {
     const memos = await this.memoOperation.fetchMemos();
-    if (this.#isMemoEmpty(memos)) return;
-    const choices = this.#buildChoices(memos, action);
-    return this.#promptForMemo(choices, action);
-  }
-
-  #isMemoEmpty(memos) {
     if (memos.length === 0) {
       console.error("No memos found.");
       return true;
     }
+    const choices = this.#buildChoices(memos, action);
+    return this.#promptForMemo(choices, action);
   }
 
   #buildChoices(memos, action) {
