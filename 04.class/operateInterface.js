@@ -57,12 +57,12 @@ export default class OperateInterface {
     });
   }
 
-  #promptForMemo(memo, action) {
+  #promptForMemo(choices, action) {
     const prompt = new Select({
       type: "select",
       name: "name",
       message: `Choose a memo you want to ${action}:`,
-      choices: memo,
+      choices,
       result() {
         return this.focused.value;
       },
