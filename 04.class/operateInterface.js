@@ -38,7 +38,7 @@ export default class OperateInterface {
   async #selectMemoFromList(action) {
     const memos = await this.memoOperation.fetchMemos();
     if (this.#isMemoEmpty(memos)) return;
-    const choices = this.#extractFirstLineAndValue(memos, action);
+    const choices = this.#buildChoices(memos, action);
     return this.#promptForMemo(choices, action);
   }
 
@@ -49,7 +49,7 @@ export default class OperateInterface {
     }
   }
 
-  #extractFirstLineAndValue(memos, action) {
+  #buildChoices(memos, action) {
     return memos.map((memo) => {
       const firstLine = memo.content.split("\n")[0] || " ";
       const prop = action === "delete" ? "id" : "content";
