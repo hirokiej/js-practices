@@ -34,8 +34,12 @@ export default class OperateInterface {
 
   async writeMemo() {
     const content = await this.#inputMemo();
-    await this.memoOperation.addMemo(content);
-    console.log("Memo added.");
+    if (!content) {
+      console.error("Please write a memo");
+    } else {
+      await this.memoOperation.addMemo(content);
+      console.log("Memo added.");
+    }
   }
 
   async #selectMemoFromList(action) {
@@ -50,7 +54,7 @@ export default class OperateInterface {
 
   #buildChoices(memos, action) {
     return memos.map((memo) => {
-      const firstLine = memo.content.split("\n")[0] || " ";
+      const firstLine = memo.content.split("\n")[0];
       const prop = action === "delete" ? "id" : "content";
       return { name: firstLine, value: memo[prop] };
     });
