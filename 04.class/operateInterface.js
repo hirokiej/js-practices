@@ -12,7 +12,7 @@ export default class OperateInterface {
     const memos = await this.memoOperation.fetchMemos();
     if (memos.length === 0) {
       console.error("No memos found.");
-      return true;
+      return;
     }
     memos.forEach((memo) => {
       console.log(memo.content.split("\n")[0]);
@@ -42,7 +42,7 @@ export default class OperateInterface {
     const memos = await this.memoOperation.fetchMemos();
     if (memos.length === 0) {
       console.error("No memos found.");
-      return true;
+      return;
     }
     const choices = this.#buildChoices(memos, action);
     return this.#promptForMemo(choices, action);
