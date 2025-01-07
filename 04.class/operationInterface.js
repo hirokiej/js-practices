@@ -3,7 +3,7 @@ import enquirer from "enquirer";
 
 const { Select } = enquirer;
 
-export default class OperateInterface {
+export default class OperationInterface {
   constructor(memoOperation) {
     this.memoOperation = memoOperation;
   }

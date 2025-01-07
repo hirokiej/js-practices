@@ -1,26 +1,26 @@
 #!/usr/bin/env node
 
 import MemoOperation from "./memoOperation.js";
-import OperateInterface from "./operateInterface.js";
+import OperationInterface from "./operationInterface.js";
 
 main();
 
 async function main() {
   const memoOperation = new MemoOperation();
-  const operateInterface = new OperateInterface(memoOperation);
+  const operationInterface = new OperationInterface(memoOperation);
 
   const validOptions = ["-l", "-r", "-d"];
   const firstArg = process.argv[2];
 
   try {
     if (!firstArg) {
-      await operateInterface.writeMemo();
+      await operationInterface.writeMemo();
     } else if (firstArg === "-l") {
-      await operateInterface.listMemos();
+      await operationInterface.listMemos();
     } else if (firstArg === "-r") {
-      await operateInterface.readMemos();
+      await operationInterface.readMemos();
     } else if (firstArg === "-d") {
-      await operateInterface.deleteMemo();
+      await operationInterface.deleteMemo();
     } else if (!validOptions.includes(firstArg)) {
       console.error(
         "Invalid option: Please use -l(list), -r(read) or -d(delete)",
