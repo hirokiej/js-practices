@@ -30,7 +30,7 @@ export default class OperateInterface {
   }
 
   async writeMemo() {
-    const content = await this.#imputMemo();
+    const content = await this.#inputMemo();
     await this.memoOperation.addMemo(content);
     console.log("Memo added.");
   }
@@ -70,7 +70,7 @@ export default class OperateInterface {
     return prompt.run();
   }
 
-  #imputMemo() {
+  #inputMemo() {
     return new Promise((resolve) => {
       const rl = readline.createInterface({
         input: process.stdin,
