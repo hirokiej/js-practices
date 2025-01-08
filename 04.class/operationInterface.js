@@ -21,15 +21,12 @@ export default class OperationInterface {
 
   async readMemos() {
     const content = await this.#selectMemoFromList("see");
-    if (!content) return;
     console.log(content);
   }
 
   async deleteMemo() {
     const id = await this.#selectMemoFromList("delete");
-    if (!id) return;
     this.memoOperation.removeMemo(id);
-    console.log("Memo deleted!");
   }
 
   async writeMemo() {
