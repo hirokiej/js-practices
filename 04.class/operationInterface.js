@@ -50,9 +50,9 @@ export default class OperationInterface {
   }
 
   #buildChoices(memos, action) {
+    const prop = action === "delete" ? "id" : "content";
     return memos.map((memo) => {
       const firstLine = memo.content.split("\n")[0];
-      const prop = action === "delete" ? "id" : "content";
       return { name: firstLine, value: memo[prop] };
     });
   }
